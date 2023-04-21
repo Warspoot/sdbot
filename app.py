@@ -36,6 +36,8 @@ bot.load_extension('modules.set_settings')
 
 bot.load_extension('modules.samplers')
 
+bot.load_extension('modules.sdmodels')
+
 @bot.slash_command(
     name= "text2image",
     description="creates an image from input prompts",
@@ -51,8 +53,6 @@ async def t2img(
     width : int,
     height : int
     ):
-    if prompt == "nsfw":
-        await interaction.channel.send("horni smh")
     SeedAsk = await interaction.response.send_message("Would you like to use a set seed or random?")
     message = await bot.wait_for(
        'message',
