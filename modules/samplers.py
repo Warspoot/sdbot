@@ -11,7 +11,7 @@ from nextcord import Interaction
 from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 
-url = "https://0a5fb73816cc7be3ae.gradio.live"
+url = "https://f1210f2c7080ee8889.gradio.live/"
 token = "MTAzNjE4ODg2MDczODE5MTQxMg.GZYdOv.rEc9RDedDq1hJl0QfJAWwaSOtNLYul8Z08eELk"
 response = {}
 

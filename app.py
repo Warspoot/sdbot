@@ -12,7 +12,7 @@ from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 
 os.environ["REPLICATE_API_TOKEN"] = "11e735e40d36e12c1ad1dbd322e288f793c820c0"
-url = "https://0a5fb73816cc7be3ae.gradio.live"
+url = "https://f1210f2c7080ee8889.gradio.live/"
 token = "MTAzNjE4ODg2MDczODE5MTQxMg.GZYdOv.rEc9RDedDq1hJl0QfJAWwaSOtNLYul8Z08eELk"
 response = {}
 
