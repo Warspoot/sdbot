@@ -42,7 +42,6 @@ class setvae(commands.Cog):
 
         global response
         response = requests.post(url=f'{url}/sdapi/v1/options', json = option_payload)
-        if vae == vae_if:
-            await interaction.followup.send(f"Successfully set vae! \n The vae is now: **{str(vae)}** \n Note: if the vae set was invalid then it will be set to Automatic")
+        await interaction.followup.send(f"VAE has been set (if invalid VAE was given then VAE is set to Audomatic)")
 def setup(bot):
     bot.add_cog(setvae(bot))
