@@ -11,9 +11,11 @@ from nextcord import Interaction
 from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 
-os.environ["REPLICATE_API_TOKEN"] = "11e735e40d36e12c1ad1dbd322e288f793c820c0"
-url = "https://6ef5d03ac6d3a0ba84.gradio.live"
-token = "MTAzNjE4ODg2MDczODE5MTQxMg.GZYdOv.rEc9RDedDq1hJl0QfJAWwaSOtNLYul8Z08eELk"
+#import url and tokens from env.py
+from env import *
+os.environ["REPLICATE_API_TOKEN"] = replicate_token
+url = sd_url
+token = discord_token
 response = {}
 
 intents = nextcord.Intents.default()
@@ -41,6 +43,8 @@ bot.load_extension('modules.sdmodels')
 bot.load_extension('modules.setmodel')
 
 bot.load_extension('modules.setclipskip')
+
+bot.load_extension('modules.setvae')
 
 @bot.slash_command(
     name= "text2image",
