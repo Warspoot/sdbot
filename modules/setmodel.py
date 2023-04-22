@@ -12,33 +12,31 @@ from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 from app import *
 
-class Mycog(commands.Cog):
+class setmodel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @bot.slash_command(
-        name= "settings",
-        description="settings for ai generation",
+        name= "setmodel",
+        description="sets the checkpoint model used for generation",
         guild_ids=[serverID, serverID2, serverID3]
     )
-    async def settings(
+    async def setmodel(
         self,
         interaction : Interaction,
-        model : str,
-        clip : int,
+        model : str
         ):
         await interaction.response.send_message("Just a moment...")
 
         global option_payload 
         option_payload = {
         "sd_model_checkpoint": (model),
-        "CLIP_stop_at_last_layers": (clip)
         }
 
         print(option_payload)
-        await interaction.channel.send(f"Successfully set settings! \n The model is now: **{str(model)}** \n The clip skip is now: **{int(clip)}**")
+        await interaction.channel.send(f"Successfully set Model! \n The model is now: **{str(model)}**")
 
         global response
         response = requests.post(url=f'{url}/sdapi/v1/options', json=option_payload)
 def setup(bot):
-    bot.add_cog(Mycog(bot))
+    bot.add_cog(setmodel(bot))

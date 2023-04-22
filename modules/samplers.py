@@ -10,20 +10,7 @@ import asyncio
 from nextcord import Interaction
 from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
-
-url = "https://f1210f2c7080ee8889.gradio.live/"
-token = "MTAzNjE4ODg2MDczODE5MTQxMg.GZYdOv.rEc9RDedDq1hJl0QfJAWwaSOtNLYul8Z08eELk"
-response = {}
-
-intents = nextcord.Intents.default()
-intents.message_content = True
-
-bot=commands.Bot(command_prefix="!", intents=nextcord.Intents.all())
-client = commands.Bot()
-
-serverID= 610478314506944512 
-serverID2= 757893356746702928
-serverID3= 1007818536636395600
+from app import *
 
 class samplers(commands.Cog):
     def __init__(self, bot):

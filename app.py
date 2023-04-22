@@ -12,7 +12,7 @@ from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 
 os.environ["REPLICATE_API_TOKEN"] = "11e735e40d36e12c1ad1dbd322e288f793c820c0"
-url = "https://f1210f2c7080ee8889.gradio.live/"
+url = "https://6ef5d03ac6d3a0ba84.gradio.live"
 token = "MTAzNjE4ODg2MDczODE5MTQxMg.GZYdOv.rEc9RDedDq1hJl0QfJAWwaSOtNLYul8Z08eELk"
 response = {}
 
@@ -37,6 +37,10 @@ bot.load_extension('modules.set_settings')
 bot.load_extension('modules.samplers')
 
 bot.load_extension('modules.sdmodels')
+
+bot.load_extension('modules.setmodel')
+
+bot.load_extension('modules.setclipskip')
 
 @bot.slash_command(
     name= "text2image",
