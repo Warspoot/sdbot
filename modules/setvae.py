@@ -30,9 +30,9 @@ class setvae(commands.Cog):
         ):
         if vae != vae_if:
             vae = "Automatic"
-            await interaction.channel.send("Invalid VAE! Setting VAE to Automatic")
+            await interaction.response.send_message("Invalid VAE! Setting VAE to Automatic")
 
-        await interaction.response.send_message("Just a moment...")
+        await interaction.channel.send("Just a moment...")
         global option_payload
         option_payload = {
             "sd_vae" : (vae),
