@@ -10,35 +10,21 @@ import asyncio
 from nextcord import Interaction
 from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
+from app import *
 
-os.environ["REPLICATE_API_TOKEN"] = "11e735e40d36e12c1ad1dbd322e288f793c820c0"
-token = "MTAzNjE4ODg2MDczODE5MTQxMg.GZYdOv.rEc9RDedDq1hJl0QfJAWwaSOtNLYul8Z08eELk"
-response = {}
-
-intents = nextcord.Intents.default()
-intents.message_content = True
-
-bot=commands.Bot(command_prefix="!", intents=nextcord.Intents.all())
-client = commands.Bot()
-
-serverID= 610478314506944512 
-serverID2= 757893356746702928
-serverID3= 1007818536636395600
-
-class upscale(commands.Cog):
-    def __init__(self, bot):
+class upscalecmd(commands.Cog):
+    def __init__ (self, bot):
         self.bot = bot
 
     @bot.slash_command(
-    name="upscale",
-    description="Upscale your images",
-    guild_ids=[serverID, serverID2, serverID3]
+        name="upscale",
+        description="Upscale your images",
+        guild_ids=[serverID, serverID2, serverID3]
     )
     async def upscale(
-            self,
-            interaction: Interaction,
-            scale : int,
-            ):
+        self,
+        interaction: Interaction, 
+        scale : int, ):
         image = await interaction.response.send_message("Please send an image file")
         message = await bot.wait_for(
         'message',
@@ -46,7 +32,7 @@ class upscale(commands.Cog):
             m.author == interaction.user 
             and 
             m.channel == interaction.channel)
-        
+        await interaction.channel.send("Just a moment...")
         attachment = message.attachments[0]
         file_path = "Images/image.png" # Specify a file path here
         await attachment.save(file_path)  # Pass the file path argument to the save() method
@@ -59,7 +45,7 @@ class upscale(commands.Cog):
         )
         urllib.request.urlretrieve((output),"Images/output.png")
         file = nextcord.File("Images/output.png")
-        await interaction.channel.send("Here is the upscaled image:")
+        await interaction.channel.send(f"{(interaction.user.mention)} Here is the upscaled image:")
         await interaction.channel.send(file=file)
 def setup(bot):
-    bot.add_cog(upscale(bot))
+    bot.add_cog(upscalecmd(bot))

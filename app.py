@@ -46,6 +46,10 @@ bot.load_extension('modules.setclipskip')
 
 bot.load_extension('modules.setvae')
 
+bot.load_extension('modules.getsettings')
+
+bot.load_extension('modules.upscale')
+
 @bot.slash_command(
     name= "text2image",
     description="creates an image from input prompts",
@@ -162,40 +166,5 @@ async def t2img(
             await message.add_reaction("<a:tenor5:847460229780209734>")
             await interaction.channel.send("Timed out.")
             break
-                
-                # Execute your code here when the correct reaction is added"""
-
-     
-    # await interaction.channel.send("Here is the generated image:")
-   # await interaction.channel.send(file=file)
-
-@bot.slash_command(
-    name="upscale",
-    description="Upscale your images",
-    guild_ids=[serverID, serverID2, serverID3]
-)
-async def upscale(interaction: Interaction, scale : int, ):
-    image = await interaction.response.send_message("Please send an image file")
-    message = await bot.wait_for(
-       'message',
-         check=lambda m:
-           m.author == interaction.user 
-           and 
-           m.channel == interaction.channel)
-    
-    attachment = message.attachments[0]
-    file_path = "Images/image.png" # Specify a file path here
-    await attachment.save(file_path)  # Pass the file path argument to the save() method
-
-    output = replicate.run(
-        "xinntao/realesrgan:1b976a4d456ed9e4d1a846597b7614e79eadad3032e9124fa63859db0fd59b56",
-        input= {"img" : open(file_path, "rb"),
-                "scale" : (scale)
-                }
-    )
-    urllib.request.urlretrieve((output),"Images/output.png")
-    file = nextcord.File("Images/output.png")
-    await interaction.channel.send("Here is the upscaled image:")
-    await interaction.channel.send(file=file)
 
 bot.run(token)
