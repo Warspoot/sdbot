@@ -50,6 +50,8 @@ bot.load_extension('modules.getsettings')
 
 bot.load_extension('modules.upscale')
 
+bot.load_extension('modules.tagger')
+
 @bot.slash_command(
     name= "text2image",
     description="creates an image from input prompts",
