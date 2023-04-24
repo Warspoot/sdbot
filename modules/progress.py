@@ -12,7 +12,7 @@ from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 from app import *
 
-class progress(commands.cog):
+class progress(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -20,8 +20,14 @@ class progress(commands.cog):
         name= "progress",
         description= "check generation progress"
     )
-    async def progress(
+    async def getprogress(
         self,
         interaction : Interaction
     ):
-        
+        response = requests.get(url=f'{url}/sdapi/v1/progress')
+        if response.status_code == 200:
+            progress = response.json()
+            print(progress)
+        await interaction.response.send_message("printed to console.")
+def setup(bot):
+    bot.add_cog(progress(bot))

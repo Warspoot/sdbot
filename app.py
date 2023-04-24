@@ -52,6 +52,8 @@ bot.load_extension('modules.upscale')
 
 bot.load_extension('modules.tagger')
 
+bot.load_extension('modules.progress')
+
 @bot.slash_command(
     name= "text2image",
     description="creates an image from input prompts",
@@ -137,7 +139,14 @@ async def t2img(
                 if 'Seed: ' in line:
                     seed = line.split(': ', 1)[1]
         print(seed)
-        image.save(f'SDImages/{interaction.user} - {seed}.png', pnginfo=pnginfo)
+        path = f'./SDImages/{interaction.user}'
+        if not os.path.exists(path):
+            os.mkdir(path)
+            print(f"folder created for {interaction.user}")
+        else:
+            print(f"folder for {interaction.user} already exists, placing image in folder instead.")
+
+        image.save(f'SDImages/{interaction.user}/{interaction.user} - {seed}.png', pnginfo=pnginfo)
         image.save('output.png', pnginfo=pnginfo)
         
         Embed = nextcord.Embed(
