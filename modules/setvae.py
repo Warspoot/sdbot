@@ -12,8 +12,8 @@ from nextcord.ext import commands
 from PIL import Image, PngImagePlugin
 from app import *
 
-vae_if = ["nai.vae.pt", "orangemix.vae.pt", "none", "Automatic"]
-vae_list = "`nai.vae.pt` or `orangemix.vae.pt` or `none` or `Automatic`"
+vae_if = ["nai.vae.pt", "orangemix.vae.pt", "Counterfeit-V2.5.vae.pt", "none", "Automatic"]
+vae_list = "`nai.vae.pt` or `orangemix.vae.pt` or 'Counterfeit-V2.5.vae.pt' or `none` or `Automatic`"
 
 class setvae(commands.Cog):
     def __init__ (self, bot):

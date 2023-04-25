@@ -44,6 +44,8 @@ bot.load_extension('modules.setmodel')
 
 bot.load_extension('modules.setclipskip')
 
+bot.load_extension('modules.text2img')
+
 bot.load_extension('modules.setvae')
 
 bot.load_extension('modules.getsettings')
@@ -54,6 +56,7 @@ bot.load_extension('modules.tagger')
 
 bot.load_extension('modules.progress')
 
+"""
 @bot.slash_command(
     name= "text2image",
     description="creates an image from input prompts",
@@ -177,5 +180,5 @@ async def t2img(
             await message.add_reaction("<a:tenor5:847460229780209734>")
             await interaction.channel.send("Timed out.")
             break
-
+"""
 bot.run(token)
